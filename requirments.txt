@@ -1,0 +1,11 @@
+fastapi 
+uvicorn
+httpx 
+sqlalchemy 
+fastapi-cache2
+pydantic
+pyjwt
+"passlib[bcrypt]"
+pydantic[email] 
+python-multipart
+python-dotenv
