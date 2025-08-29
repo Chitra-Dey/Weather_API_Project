@@ -1,12 +1,12 @@
-from fastapi import Depends,HTTPException, status,APIRouter
+from fastapi import Depends, HTTPException, status, APIRouter
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from sqlmodel import select
 from database.db import get_db
-from core.security import hash_password,check_password,get_current_user,create_token
+from core.security import hash_password, check_password, get_current_user, create_token
 from models.user_model import User
-from schemas.users import UserIn,TokenData
-from datetime import timedelta ,datetime
+from schemas.users import UserIn, TokenData
+from datetime import timedelta, datetime
 
 router = APIRouter()
 
@@ -34,9 +34,15 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
 
     user=db.exec(select(User).where(User.username==username)).first()
     if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail='user not found')
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='user not found'
+        )
     if not check_password(password,user.hashed_password):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail='Invalid password')
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Invalid password'
+        )
 
     access_token=create_token({"sub": str(user.username)})
     return {'access_token':access_token,"token_type": "bearer"}

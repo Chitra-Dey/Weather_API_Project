@@ -1,10 +1,10 @@
-from fastapi import FastAPI , Query ,APIRouter,Depends
+from fastapi import FastAPI , Query, APIRouter, Depends
 from .authentication import get_current_user
 from database.db import get_db
 from sqlmodel import Session ,select
 from models.user_model import User
 from models.weather_model import WeatherHistory  
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 from cache import get_from_cache, set_in_cache
 from dotenv import load_dotenv 
 import os
