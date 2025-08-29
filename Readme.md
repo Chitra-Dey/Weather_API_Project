@@ -8,6 +8,13 @@ Endpoints:
 GET /weather?city=London → returns current weather.
 Store a history of user searches in DB.
 
+
+About
+WeatherAPI is a simple yet powerful API service designed to provide accurate and real-time weather information 
+for any city around the globe.Also it can show the searched history of a authenticated user and for reducing API 
+Hitting traffic it use cache memory temporarily for fetching the response .
+
+
 (We will use httpx module in python to make the asynchronous API call.)
 
 Emailstr is a special kind of email-validator
