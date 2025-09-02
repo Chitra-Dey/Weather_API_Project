@@ -11,3 +11,6 @@ class UserIn(BaseModel):
     email: str
     password: str
    
+class LoginData(BaseModel):
+    username: str
+    password: str

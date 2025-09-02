@@ -7,7 +7,7 @@ import uuid
 
 class User(SQLModel,table=True):
     id :uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
-    username: str = Field(index=True,primary_key=True) 
+    username: str = Field(index=True,unique=True) 
     email: EmailStr = Field(index=True)
     hashed_password: str=Field(index=True)
    

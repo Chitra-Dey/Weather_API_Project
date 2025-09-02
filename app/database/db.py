@@ -1,6 +1,6 @@
 from typing import Annotated 
-from fastapi import Depends,FastAPI , HTTPException , Query
-from sqlmodel import Field ,Session ,SQLModel,create_engine,select
+from fastapi import Depends,FastAPI , HTTPException
+from sqlmodel import Field ,Session ,SQLModel,create_engine
 
 sqlite_url = f'sqlite:///database.db'
 connect_args = {"check_same_thread":False}
