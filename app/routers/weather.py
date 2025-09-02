@@ -1,5 +1,5 @@
 from fastapi import FastAPI , Query, APIRouter, Depends
-from .authentication import get_current_user
+from .authentication import get_recent_user,get_user
 from database.db import get_db
 from sqlmodel import Session ,select
 from models.user_model import User
@@ -24,7 +24,7 @@ API_KEY = os.getenv("API_KEY")
 
 @routers.get('/get_weather')
 async def get_weather(city: str = Query(description = "Enter the City Name"),
-                      user:User=Depends(get_current_user),
+                      user:User=Depends(get_user),
                       session: Session = Depends(get_db)):
     '''Handling & Fetching the weather data from external api and checking cache memory'''
     if city in cache:
@@ -72,7 +72,7 @@ async def get_weather(city: str = Query(description = "Enter the City Name"),
             humidity=humid,
             wind_speed=windy,
             user_id=str(user.id)
-        )
+            )
         session.add(new_history)
         session.commit()
         session.refresh(new_history)
